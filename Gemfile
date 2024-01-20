@@ -37,10 +37,18 @@ gem "rack-cors"
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+gem 'sidekiq'
+gem 'pagy'
+gem 'base58'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+
+  gem 'factory_bot'
+  gem 'rspec-rails', '~> 6.1.0'
+  gem 'simplecov', require: false
+  gem 'faker'
 end
 
 group :development do
