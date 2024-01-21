@@ -28,8 +28,9 @@ class Api::V1::UrlsController < Api::V1::ApiController
     end
   end
 
-  def delete
-    current_user.urls.find_by(slug: params[:id]).delete
+  def destroy
+    current_user.urls.find_by(id: params[:id])&.destroy
+    head :no_content
   end
 
   private
