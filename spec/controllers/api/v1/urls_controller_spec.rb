@@ -35,7 +35,9 @@ describe Api::V1::UrlsController, type: :controller do
       it { expect(response).to have_http_status(:bad_request) }
     end
 
-    context 'with original_url invalid' do
+    context 'with original_url is not http or https' do
+      let(:params) { { url: { original_url: 'htt://www.google.com' } } }
+      it { expect(response).to have_http_status(:bad_request) }
     end
 
     context 'with valid params' do

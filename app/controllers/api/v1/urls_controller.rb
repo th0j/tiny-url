@@ -20,7 +20,7 @@ class Api::V1::UrlsController < Api::V1::ApiController
   end
 
   def show
-    url = Url.find_by(slug: params[:id])
+    url = Url.popular(params[:id])
     if url.present?
       render json: UrlSerializer.new(url)
     else
