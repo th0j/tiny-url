@@ -8,8 +8,7 @@ class User < ApplicationRecord
 
   has_many :urls
 
-  validates_uniqueness_of :email
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :password, presence: true
   validates :password_confirmation, presence: true
 end
