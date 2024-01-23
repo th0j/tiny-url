@@ -7,5 +7,9 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_many :urls
-  # self.skip_session_storage = [:http_auth, :params_auth]
+
+  validates_uniqueness_of :email
+  validates :email, presence: true
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
 end

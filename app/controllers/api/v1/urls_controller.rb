@@ -16,7 +16,7 @@ class Api::V1::UrlsController < Api::V1::ApiController
       return render json: { data: { status: :ok, message: 'Your URL is submited and processing.' } }, status: :ok
     end
 
-    render json: { errors: { status: :bad_request, message: 'Something went wrong' } }, status: :bad_request
+    render json: { errors: [{ status: :bad_request, message: 'Something went wrong' }] }, status: :bad_request
   end
 
   def show
@@ -24,7 +24,7 @@ class Api::V1::UrlsController < Api::V1::ApiController
     if url.present?
       render json: UrlSerializer.new(url)
     else
-      render json: { errors: { message: 'Not found' } }, status: :not_found
+      render json: { errors: [{ status: :not_found, message: 'Not found' }] }, status: :not_found
     end
   end
 

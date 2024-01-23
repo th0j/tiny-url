@@ -1,0 +1,34 @@
+version: '3.5'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 123456
+  redis:
+    image: redis
+    command: redis-server
+    volumes:
+      - 'redis:/data'
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/tiny_url
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_HOST=db
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=123456
+      - DEVISE_JWT_SECRET_KEY=9685981f50081573804c3484a2906a322feb2eb7a4e7df569d8afa050f1547ae2656807b66eb3cc992a9597d50c172c8123063d35d3700c0b9fa0c3884c6c1ed
+      - RAILS_MASTER_KEY=0c62427cd117f26e94154f1d043a9a77
+
+volumes:
+  redis:
+  postgres:
