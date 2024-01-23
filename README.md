@@ -18,14 +18,18 @@
     - To safeguard the system, we can impose a rate limiter to ensure that a single user can only make 5 requests per second.
     - Another strategy for performance improvement is to set up an auxiliary service with an additional database to pre-generate unique `slug` entries. When client create new shorted url, we can get from service pre-generate quickly
 
-## Demo
+## Docs & Demo
 - Visit: `https://tiny-url.fly.dev`
+- Docs: Import file `insomnia_tiny_url.json` to Insomnia 
 
 ## Install for development
 - Run `rake secret`
 - Run `rails credentials:edit`, add key `secret_key_jwt` with value from `rake secret`
-- Run `docker compose build`
-- Run `docker compose up`
+- Copy file `env.example` to `.env` and setup your env variable
+- Run `rails db:create`
+- Run `rails db:migrate`
+- Run `rails server`
+- Make sure redis server is installed, run `rails sidekiq`
 
 ## Deploy for production use fly.io
 - Run `rails credentials:edit --environment production` and remember add key `secret_key_jwt`
@@ -34,4 +38,4 @@
 
 ## Enhancements
 - [ ] Rate limiter
-- [ ] Pre-generate short URLs
+- [ ] Pre-generate short URLs service

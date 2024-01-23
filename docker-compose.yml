@@ -5,6 +5,7 @@ services:
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
   redis:
     image: redis
@@ -26,8 +27,7 @@ services:
       - DATABASE_HOST=db
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=123456
-      - DEVISE_JWT_SECRET_KEY=9685981f50081573804c3484a2906a322feb2eb7a4e7df569d8afa050f1547ae2656807b66eb3cc992a9597d50c172c8123063d35d3700c0b9fa0c3884c6c1ed
-      - RAILS_MASTER_KEY=0c62427cd117f26e94154f1d043a9a77
+      - RAILS_ENV=development
 
 volumes:
   redis:
