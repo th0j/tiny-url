@@ -27,7 +27,9 @@ services:
       - DATABASE_HOST=db
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=123456
-      - RAILS_ENV=development
+      - RAILS_ENV=production
+      - RAILS_MASTER_KEY=0c62427cd117f26e94154f1d043a9a77
+      - WEB_CONCURRENCY=4
 
 volumes:
   redis:
